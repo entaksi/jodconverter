@@ -154,9 +154,15 @@ public class OfficeUtils {
     }
 
     public static File getOfficeExecutable(File officeHome) {
-        if (PlatformUtils.isMac()) {
-            return new File(officeHome, "MacOS/soffice.bin");
-        } else {
+        if (PlatformUtils.isMac())
+        {
+            File soffice = new File(officeHome, "MacOS/soffice.bin");
+            if (soffice.exists())
+                return new File(officeHome, "MacOS/soffice.bin");
+            else
+                return new File(officeHome, "MacOS/soffice");
+        } else
+        {
             return new File(officeHome, "program/soffice.bin");
         }
     }
